@@ -56,7 +56,7 @@ function Profile() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/profile", {
+      const res = await fetch("https://studentstudio-1.onrender.com/api/profile", {
         method: "POST",
         body: data
       })

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { io } from "socket.io-client"
 
-const socket = io("http://localhost:5000")
+const socket = io("https://studentstudio-1.onrender.com")
 
 function Chat() {
 
@@ -15,7 +15,7 @@ function Chat() {
   // Load old messages once
   const fetchMessages = async () => {
     const res = await fetch(
-      `http://localhost:5000/api/chat/${projectId}`
+      `https://studentstudio-1.onrender.com/api/chat/${projectId}`
     )
     const data = await res.json()
     setMessages(data)

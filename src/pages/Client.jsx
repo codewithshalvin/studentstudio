@@ -18,7 +18,7 @@ function Client() {
   }, [])
 
   const fetchStudentDetails = async (email, projectId) => {
-    const res = await fetch(`http://localhost:5000/api/student/${email}`)
+    const res = await fetch(`https://studentstudio-1.onrender.com/api/student/${email}`)
     const data = await res.json()
     setApprovedStudent(data)
     setActiveProjectId(projectId)
@@ -587,7 +587,7 @@ function Client() {
                   <div className="modal-field-label">Resume</div>
                   <div className="modal-field-value">
                     <a
-                      href={`http://localhost:5000/uploads/${approvedStudent.resume}`}
+                      href={`https://studentstudio-1.onrender.com/uploads/${approvedStudent.resume}`}
                       target="_blank"
                       rel="noreferrer"
                       className="resume-link"

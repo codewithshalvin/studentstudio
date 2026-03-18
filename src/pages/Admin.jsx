@@ -13,7 +13,7 @@ function Admin() {
   useEffect(() => {
     if (!user) { navigate("/login"); return }
     fetch("https://studentstudio-1.onrender.com").then(r => r.json()).then(setProjects)
-    fetch("http://localhost:5000/api/users").then(r => r.json()).then(setUsers)
+    fetch("https://studentstudio-1.onrender.com/api/users").then(r => r.json()).then(setUsers)
   }, [])
 
   const students = users.filter(u => u.role === "student")
@@ -749,7 +749,7 @@ function Admin() {
                   <div className="modal-field-label">Resume</div>
                   <div className="modal-field-value">
                     <a
-                      href={`http://localhost:5000/uploads/${selectedStudent.resume}`}
+                      href={`https://studentstudio-1.onrender.com/uploads/${selectedStudent.resume}`}
                       target="_blank"
                       rel="noreferrer"
                       className="resume-link"

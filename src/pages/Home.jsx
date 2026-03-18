@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Navbar from "../components/Navbar"
-
-// Import your logo — adjust path as needed
 import logo from "../assets/logo(2).png"
+
+const API = "https://studentstudio-1.onrender.com"
 
 function Home() {
   const [projects, setProjects] = useState([])
@@ -12,7 +12,7 @@ function Home() {
   const user = JSON.parse(localStorage.getItem("user"))
 
   useEffect(() => {
-    fetch("https://studentstudio-1.onrender.com")
+    fetch(`${API}/api/projects`)
       .then(res => res.json())
       .then(data => setProjects(data))
       .catch(err => console.log(err))
@@ -21,7 +21,7 @@ function Home() {
   const handleApply = async (projectId) => {
     if (!user) { navigate("/login"); return }
     if (user.role !== "student") { alert("Only students can apply"); return }
-    const res = await fetch(`https://studentstudio-1.onrender.com/${projectId}/apply`, {
+    const res = await fetch(`${API}/api/projects/${projectId}/apply`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ studentEmail: user.email })
@@ -64,7 +64,6 @@ function Home() {
           font-family: 'DM Sans', sans-serif;
         }
 
-        /* ── Hero ── */
         .hero {
           background: var(--navy);
           padding: 64px 48px 56px;
@@ -73,7 +72,6 @@ function Home() {
           overflow: hidden;
         }
 
-        /* Decorative teal glow */
         .hero::after {
           content: '';
           position: absolute;
@@ -86,7 +84,6 @@ function Home() {
           pointer-events: none;
         }
 
-        /* Gold top accent line */
         .hero::before {
           content: '';
           position: absolute;
@@ -95,7 +92,6 @@ function Home() {
           background: linear-gradient(90deg, transparent, var(--gold), var(--teal), var(--gold), transparent);
         }
 
-        /* ── Brand lockup ── */
         .brand-lockup {
           display: flex;
           align-items: center;
@@ -108,14 +104,11 @@ function Home() {
           width: 110px;
           height: 110px;
           object-fit: contain;
-          /* The logo has a black bg — we use mix-blend-mode to make it transparent-ish on dark bg */
           mix-blend-mode: lighten;
           filter: drop-shadow(0 0 12px rgba(200,169,110,0.4));
         }
 
-        .brand-text {
-          text-align: left;
-        }
+        .brand-text { text-align: left; }
 
         .brand-name {
           font-family: 'DM Serif Display', serif;
@@ -125,9 +118,7 @@ function Home() {
           line-height: 1;
         }
 
-        .brand-name span {
-          color: var(--gold);
-        }
+        .brand-name span { color: var(--gold); }
 
         .brand-tagline {
           font-size: 11px;
@@ -138,7 +129,6 @@ function Home() {
           margin-top: 4px;
         }
 
-        /* Divider */
         .hero-divider {
           width: 48px;
           height: 2px;
@@ -191,7 +181,6 @@ function Home() {
 
         .search-input::placeholder { color: rgba(255,255,255,0.3); }
 
-        /* ── Stats strip ── */
         .stats-strip {
           display: flex;
           justify-content: center;
@@ -222,7 +211,6 @@ function Home() {
           margin-top: 2px;
         }
 
-        /* ── Section ── */
         .section {
           padding: 48px;
           max-width: 1200px;
@@ -251,14 +239,12 @@ function Home() {
           border-radius: 20px;
         }
 
-        /* ── Grid ── */
         .grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
           gap: 16px;
         }
 
-        /* ── Project card ── */
         .project-card {
           background: var(--card-bg);
           border: 1px solid var(--border);
@@ -360,7 +346,6 @@ function Home() {
           border: 1px solid #c8e6c8;
         }
 
-        /* ── Empty state ── */
         .empty-state {
           grid-column: 1 / -1;
           background: var(--card-bg);
@@ -378,9 +363,7 @@ function Home() {
       <div className="home-root">
         <Navbar />
 
-        {/* Hero */}
         <section className="hero">
-          {/* Brand lockup */}
           <div className="brand-lockup">
             <img src={logo} alt="Student Studio Logo" className="brand-logo" />
             <div className="brand-text">
@@ -407,7 +390,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Stats strip */}
         <div className="stats-strip">
           <div className="strip-stat">
             <div className="strip-value">{projects.length}</div>
@@ -423,7 +405,6 @@ function Home() {
           </div>
         </div>
 
-        {/* Projects */}
         <section className="section">
           <div className="section-header">
             <div className="section-title">Latest Client Requests</div>

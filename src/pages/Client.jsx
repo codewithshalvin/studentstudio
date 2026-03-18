@@ -11,7 +11,7 @@ function Client() {
 
   useEffect(() => {
     if (!user) { navigate("/login"); return }
-    fetch("http://localhost:5000/api/projects")
+    fetch("https://studentstudio-1.onrender.com")
       .then(res => res.json())
       .then(data => setProjects(data.filter(p => p.clientEmail === user.email)))
       .catch(err => console.log(err))

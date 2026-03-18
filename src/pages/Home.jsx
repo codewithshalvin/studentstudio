@@ -12,7 +12,7 @@ function Home() {
   const user = JSON.parse(localStorage.getItem("user"))
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/projects")
+    fetch("https://studentstudio-1.onrender.com")
       .then(res => res.json())
       .then(data => setProjects(data))
       .catch(err => console.log(err))
@@ -21,7 +21,7 @@ function Home() {
   const handleApply = async (projectId) => {
     if (!user) { navigate("/login"); return }
     if (user.role !== "student") { alert("Only students can apply"); return }
-    const res = await fetch(`http://localhost:5000/api/projects/${projectId}/apply`, {
+    const res = await fetch(`https://studentstudio-1.onrender.com/${projectId}/apply`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ studentEmail: user.email })

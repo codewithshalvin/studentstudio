@@ -12,7 +12,7 @@ function Admin() {
 
   useEffect(() => {
     if (!user) { navigate("/login"); return }
-    fetch("http://localhost:5000/api/projects").then(r => r.json()).then(setProjects)
+    fetch("https://studentstudio-1.onrender.com").then(r => r.json()).then(setProjects)
     fetch("http://localhost:5000/api/users").then(r => r.json()).then(setUsers)
   }, [])
 
@@ -663,7 +663,7 @@ function Admin() {
                         <span className={`app-status ${app.status}`}>{app.status}</span>
                         {app.status === "pending" && (
                           <button className="approve-btn" onClick={async () => {
-                            await fetch(`http://localhost:5000/api/projects/${project._id}/approve`, {
+                            await fetch(`https://studentstudio-1.onrender.com/${project._id}/approve`, {
                               method: "POST",
                               headers: { "Content-Type": "application/json" },
                               body: JSON.stringify({ studentEmail: app.studentEmail })

@@ -7,7 +7,7 @@ function Student() {
   const [projects, setProjects] = useState([])
 
   const fetchProjects = () => {
-    fetch("http://localhost:5000/api/projects")
+    fetch("https://studentstudio-1.onrender.com")
       .then(res => res.json())
       .then(data => setProjects(data))
       .catch(err => console.log(err))
@@ -78,7 +78,7 @@ function Student() {
 
         {!isApproved && !myApplication && (
           <button className="btn btn-dark" onClick={async () => {
-            const res = await fetch(`http://localhost:5000/api/projects/${project._id}/apply`, {
+            const res = await fetch(`https://studentstudio-1.onrender.com/${project._id}/apply`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ studentEmail: user.email })
